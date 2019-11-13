@@ -2,28 +2,29 @@
 extern crate amqp;
 extern crate env_logger;
 extern crate uuid;
-use amqp::protocol::basic::{BasicProperties, Deliver};
-use hubcaps;
-use hubcaps::checks::CheckRunOptions;
-use hubcaps::gists::Gists;
-use hubcaps::issues::Issue;
-use ofborg::acl::ACL;
-use ofborg::checkout;
-use ofborg::commitstatus::CommitStatus;
-use ofborg::config::GithubAppVendingMachine;
-use ofborg::files::file_to_str;
-use ofborg::message::{buildjob, evaluationjob};
-use ofborg::nix;
-use ofborg::stats;
-use ofborg::stats::Event;
-use ofborg::systems;
-use ofborg::worker;
+
+use crate::acl::ACL;
+use crate::checkout;
+use crate::commitstatus::CommitStatus;
+use crate::config::GithubAppVendingMachine;
+use crate::files::file_to_str;
+use crate::message::{buildjob, evaluationjob};
+use crate::nix;
+use crate::stats::Event;
+use crate::stats;
+use crate::systems;
+use crate::tasks::eval::StepResult;
+use crate::tasks::eval;
+use crate::worker;
 use std::collections::HashMap;
 use std::path::Path;
 use std::sync::RwLock;
 use std::time::Instant;
-use tasks::eval;
-use tasks::eval::StepResult;
+use amqp::protocol::basic::{BasicProperties, Deliver};
+use hubcaps::checks::CheckRunOptions;
+use hubcaps::gists::Gists;
+use hubcaps::issues::Issue;
+use hubcaps;
 
 pub struct EvaluationWorker<E> {
     cloner: checkout::CachedCloner,

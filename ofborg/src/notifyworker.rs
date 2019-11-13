@@ -1,8 +1,8 @@
-use amqp::protocol::basic::{BasicProperties, Deliver};
-use amqp::Basic;
-use amqp::{Channel, Consumer};
+use crate::worker::Action;
 use std::marker::Send;
-use worker::Action;
+use amqp::Basic;
+use amqp::protocol::basic::{BasicProperties, Deliver};
+use amqp::{Channel, Consumer};
 
 pub struct NotifyWorker<T: SimpleNotifyWorker> {
     internal: T,

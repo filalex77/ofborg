@@ -1,14 +1,14 @@
-use hubcaps::{Credentials, Github, InstallationTokenGenerator, JWTCredentials};
-use hyper::net::HttpsConnector;
-use hyper::Client;
-use hyper_native_tls::NativeTlsClient;
-use nix::Nix;
-use ofborg::acl;
-use serde_json;
+use crate::acl;
+use crate::nix::Nix;
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::Read;
 use std::path::{Path, PathBuf};
+use hubcaps::{Credentials, Github, InstallationTokenGenerator, JWTCredentials};
+use hyper::Client;
+use hyper::net::HttpsConnector;
+use hyper_native_tls::NativeTlsClient;
+use serde_json;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Config {

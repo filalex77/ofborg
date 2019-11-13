@@ -1,9 +1,8 @@
 /// Evaluates the expression like Hydra would, with regards to
 /// architecture support and recursed packages.
 use crate::nixstats::EvaluationStats;
+use crate::nix;
 use crate::outpathdiff;
-use ofborg::nix;
-use serde_json;
 use std::fs;
 use std::fs::File;
 use std::io::BufReader;
@@ -12,6 +11,7 @@ use std::io::Seek;
 use std::io::SeekFrom;
 use std::io::Write;
 use std::path::PathBuf;
+use serde_json;
 
 pub struct HydraNixEnv {
     path: PathBuf,

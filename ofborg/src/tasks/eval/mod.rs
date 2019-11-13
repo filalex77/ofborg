@@ -4,12 +4,12 @@ mod nixpkgs;
 pub use self::nixpkgs::NixpkgsStrategy;
 mod generic;
 pub use self::generic::GenericStrategy;
-use hubcaps::checks::CheckRunOptions;
-use ofborg::checkout::CachedProjectCo;
-use ofborg::commitstatus::CommitStatus;
-use ofborg::evalchecker::EvalChecker;
-use ofborg::message::buildjob::BuildJob;
+use crate::checkout::CachedProjectCo;
+use crate::commitstatus::CommitStatus;
+use crate::evalchecker::EvalChecker;
+use crate::message::buildjob::BuildJob;
 use std::path::Path;
+use hubcaps::checks::CheckRunOptions;
 
 pub trait EvaluationStrategy {
     fn pre_clone(&mut self) -> StepResult<()>;
